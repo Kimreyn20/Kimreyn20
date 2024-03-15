@@ -1,0 +1,23 @@
+use Illuminate\Http\Request;
+
+Route::put('/calculate/{minuend}/{subtrahend}', function ($minuend, $subtrahend) {
+    $difference = $minuend - $subtrahend;
+    return "The difference of $minuend and $subtrahend is: $difference";
+});
+
+Route::delete('/calculate/{number1}/{number2}', function ($number1, $number2) {
+    $product = $number1 * $number2;
+    return "The product of $number1 and $number2 is: $product";
+});
+
+Route::post('/calculate', function (Request $request) {
+    $dividend = $request->input('dividend');
+    $divisor = $request->input('divisor');
+    
+    if ($divisor == 0) {
+        return "Error: Divisor cannot be zero.";
+    }
+    
+    $quotient = $dividend / $divisor;
+    return "The quotient of $dividend and $divisor is: $quotient";
+});
